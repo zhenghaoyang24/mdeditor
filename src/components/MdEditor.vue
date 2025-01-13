@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted ,watch} from 'vue'
 import { marked } from 'marked'
 import 'github-markdown-css' // 引入 GitHub Markdown CSS
 
-const markdownText = ref('# Hello Markdown')
+// 从 localStorage 中读取之前保存的内容，如果没有则使用默认值
+const markdownText = ref(localStorage.getItem('markdownText') || '# Hello Markdown')
+
+// 监听 markdownText 的变化，并将其保存到 localStorage
+watch(markdownText, (newValue) => {
+    // 当 markdownText 的值发生变化时，将新值保存到 localStorage 中
+    localStorage.setItem('markdownText', newValue)
+})
 
 const htmlContent = computed(() => {
     return marked(markdownText.value)
@@ -79,13 +86,14 @@ onMounted(() => {
 }
 
 .editor {
-
+    font-size: 1rem;
     flex: 1;
     padding: 1rem;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: none;
     font-family: MapleMono,Inter;
     resize: none;
+    outline: none;
 
 }
 
@@ -93,7 +101,7 @@ onMounted(() => {
     flex: 1;
     box-sizing: border-box;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border-left: 1px solid #ccc;
     overflow-y: auto;
     font-family: MapleMono,Inter;
 }
