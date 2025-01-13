@@ -2,7 +2,7 @@
 import { ref, computed, onMounted ,watch} from 'vue'
 import { marked } from 'marked'
 import 'github-markdown-css' // 引入 GitHub Markdown CSS
-
+import  DownloadBtn from '@/components/DownloadBtn.vue'
 // 从 localStorage 中读取之前保存的内容，如果没有则使用默认值
 const markdownText = ref(localStorage.getItem('markdownText') || '# Hello Markdown')
 
@@ -70,6 +70,8 @@ onMounted(() => {
 </script>
 
 <template>
+    <!-- 使用 DownloadPDF 组件 -->
+  <DownloadBtn :previewRef="previewRef" />
     <div class="editor-container">
         <textarea ref="editorRef" spellcheck="false" class="editor" v-model="markdownText"
             placeholder="Write your markdown here..."></textarea>

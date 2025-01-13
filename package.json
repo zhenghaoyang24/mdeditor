@@ -13,7 +13,11 @@
   "dependencies": {
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.11.1",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.2",
+    "jspdf": "^2.5.2",
     "marked": "^15.0.6",
+    "pdf-lib": "^1.17.1",
     "vue": "^3.5.13"
   },
   "devDependencies": {
