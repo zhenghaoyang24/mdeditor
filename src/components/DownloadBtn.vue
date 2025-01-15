@@ -3,7 +3,7 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
     previewRef: {
-        type: Object as () => HTMLDivElement | null,
+        type: Object as () => HTMLDivElement | undefined,
         required: true
     }
 })
@@ -25,11 +25,8 @@ const downloadPDF = () => {
     iframe.style.flex = 'none'
     document.body.appendChild(iframe)
 
-    console.log('iframe created') // 调试日志
-
     // 等待 iframe 加载完成
     iframe.onload = () => {
-        console.log('iframe loaded') // 调试日志
         const iframeDocument = iframe.contentDocument || iframe.contentWindow?.document
 
         if (!iframeDocument) {
@@ -64,8 +61,6 @@ const downloadPDF = () => {
             }
         `
         iframeDocument.head.appendChild(style)
-        console.log('iframe styles:', iframeDocument.head.innerHTML) // 调试日志
-
         // 触发打印
         setTimeout(() => {
             console.log('triggering print') // 调试日志

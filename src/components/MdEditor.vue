@@ -18,7 +18,7 @@ const htmlContent = computed(() => {
 
 // 获取编辑框和预览框的 DOM 元素
 const editorRef = ref<HTMLTextAreaElement | null>(null)
-const previewRef = ref<HTMLDivElement | null>(null)
+const previewRef = ref<HTMLDivElement | undefined>( undefined )
 
 // 是否正在同步滚动（避免循环触发）
 let isSyncingScroll = false
@@ -83,8 +83,9 @@ onMounted(() => {
 .editor-container {
     display: flex;
     justify-content: space-around;
-    height: 100vh;
     box-sizing: border-box;
+    height: calc(100vh - 60px);
+    padding-top: 60px;
 }
 
 .editor {
