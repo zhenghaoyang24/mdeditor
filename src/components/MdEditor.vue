@@ -2,9 +2,10 @@
 import { ref, computed, onMounted ,watch} from 'vue'
 import { marked } from 'marked'
 import 'github-markdown-css' // 引入 GitHub Markdown CSS
-import  DownloadBtn from '@/components/DownloadBtn.vue'
 // 从 localStorage 中读取之前保存的内容，如果没有则使用默认值
-const markdownText = ref(localStorage.getItem('markdownText') || '# Hello Markdown')
+const markdownText = ref(localStorage.getItem('markdownText') 
+|| "# MDEditor 编辑器\n\n" +
+"这是一个简单的 Markdown 编辑器，支持编辑与实时预览。\n\n编辑内容只会在您本地进行保存，不会上传您的数据至服务器，**绝不窥测用户个人隐私，可放心使用**；\n\nGithub 源码：[mdeditor](https://github.com/zhenghaoyang24/mdeditor)。")
 
 // 监听 markdownText 的变化，并将其保存到 localStorage
 watch(markdownText, (newValue) => {
@@ -71,7 +72,6 @@ onMounted(() => {
 
 <template>
     <!-- 使用 DownloadPDF 组件 -->
-  <DownloadBtn :previewRef="previewRef" />
     <div class="editor-container">
         <textarea ref="editorRef" spellcheck="false" class="editor" v-model="markdownText"
             placeholder="Write your markdown here..."></textarea>
@@ -85,7 +85,6 @@ onMounted(() => {
     justify-content: space-around;
     box-sizing: border-box;
     height: calc(100vh - 60px);
-    padding-top: 60px;
 }
 
 .editor {

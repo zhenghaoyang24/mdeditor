@@ -16,7 +16,7 @@ import NavBar from "@/components/NavBar.vue";
 .main{
   /* height: calc(100vh - 100px) ; */
   height: 100%;
-  /* padding-top: 50px; */
+  padding-top: 60px;
   box-sizing: border-box;
 }
 
